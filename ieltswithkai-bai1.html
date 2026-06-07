@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS with Kai — Bài 1: Tư duy đọc chuẩn theo nhà văn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F8FA;
+      --bg-card: #FFFFFF;
+      --bg-inner: #F0F2F5;
+      --border: #E4E7ED;
+      --border-soft: #EDF0F4;
+      --text: #1A1D23;
+      --text-sub: #6B7280;
+      --accent: #0EA5A0;
+      --accent-light: #E6F7F7;
+      --accent-border: #B2E4E2;
+      --red: #E5484D;
+      --red-light: #FFF0F0;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07);
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 1.5rem 1rem 5rem;
+      line-height: 1.6;
+    }
+
+    .wrap { max-width: 680px; margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #0B1A2E 0%, #0D2137 60%, #082030 100%);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(14,165,160,0.18);
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -70px; right: -70px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(14,165,160,0.2) 0%, transparent 70%);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: 20%;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,153,255,0.12) 0%, transparent 70%);
+    }
+    .brand { font-size: 11px; font-weight: 800; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .lesson-tag {
+      display: inline-block;
+      background: rgba(14,165,160,0.15);
+      color: #5ECFCA;
+      font-size: 12px; font-weight: 600;
+      padding: 3px 12px; border-radius: 20px;
+      border: 1px solid rgba(14,165,160,0.3);
+      margin-bottom: 1rem;
+    }
+    .main-title { font-size: clamp(22px, 5vw, 28px); font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 0.5rem; }
+    .main-sub { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+    /* PROGRESS */
+    .progress-wrap { margin-bottom: 1.25rem; }
+    .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .progress-label { font-size: 12px; font-weight: 600; color: var(--text-sub); }
+    .progress-pct { font-size: 12px; font-weight: 700; color: var(--accent); }
+    .progress-bar { height: 5px; background: var(--border); border-radius: 3px; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #5ECFCA); border-radius: 3px; width: 0%; transition: width 0.5s ease; }
+
+    /* TABS */
+    .tab-row { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .tab-btn {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px; font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      box-shadow: var(--shadow-sm);
+    }
+    .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 700; box-shadow: 0 2px 8px rgba(14,165,160,0.25); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* CARDS */
+    .card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .card-label { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .card-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; }
+    .card-body { font-size: 15px; font-weight: 400; color: var(--text-sub); line-height: 1.75; }
+
+    .problem-box {
+      background: var(--red-light);
+      border-left: 3px solid var(--red);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .problem-label { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: var(--red); text-transform: uppercase; margin-bottom: 6px; }
+    .problem-box p { font-size: 14px; font-weight: 400; color: #3D1A1A; line-height: 1.75; }
+
+    .insight-box {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+    }
+    .insight-box p { font-size: 14px; color: #0A3D3B; line-height: 1.75; }
+
+    /* DEMO */
+    .demo-box {
+      background: var(--bg-inner);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      font-size: 15px;
+      line-height: 1.9;
+      border: 1px solid var(--border-soft);
+    }
+    .demo-label { font-size: 11px; font-weight: 700; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .s-main { background: var(--accent); color: #fff; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+    .s-sub { color: #AAB0BB; text-decoration: line-through; text-decoration-color: rgba(229,72,77,0.4); }
+    .s-tail { color: var(--text); font-weight: 600; }
+    .s-result { margin-top: 0.6rem; font-size: 13px; color: var(--text-sub); border-top: 1px solid var(--border); padding-top: 0.6rem; }
+    .s-result span { color: var(--accent); font-weight: 700; }
+
+    /* VERB TABLE */
+    .verb-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 13px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+    .verb-table th { background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--accent-border); }
+    .verb-table td { padding: 9px 12px; border-bottom: 1px solid var(--border-soft); color: var(--text); line-height: 1.5; vertical-align: top; }
+    .verb-table tr:last-child td { border-bottom: none; }
+    .verb-table tr:nth-child(even) td { background: #FAFBFC; }
+    .verb-table td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .verb-table td:nth-child(2) { color: var(--text-sub); font-style: italic; }
+
+    /* SIGNAL CARDS */
+    .signal-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+    .signal-card {
+      background: var(--bg-inner);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      border: 1.5px solid var(--border);
+    }
+    .signal-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .signal-num { font-size: 11px; font-weight: 800; color: var(--accent); background: var(--accent-light); padding: 3px 9px; border-radius: 4px; border: 1px solid var(--accent-border); }
+    .signal-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .signal-hint { font-size: 12px; color: var(--text-sub); margin-left: auto; font-style: italic; }
+    .sig-examples { display: flex; flex-direction: column; gap: 0.5rem; }
+    .sig-ex { background: var(--bg-card); border-radius: 6px; padding: 0.75rem; font-size: 13px; line-height: 1.7; border: 1px solid var(--border-soft); }
+    .sig-ex .ex-sent { color: var(--text); margin-bottom: 4px; font-style: italic; }
+    .sig-ex .ex-svp { color: var(--accent); font-weight: 600; }
+    .sig-ex .ex-note { color: var(--text-sub); font-size: 12px; margin-top: 4px; padding-top: 4px; border-top: 1px dashed var(--border); }
+
+    /* QUIZ */
+    .quiz-item {
+      background: var(--bg-inner);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid var(--border);
+    }
+    .quiz-num { font-size: 11px; font-weight: 800; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .quiz-sentence { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 1rem; font-style: italic; }
+    .quiz-label { font-size: 12px; font-weight: 600; color: var(--text-sub); margin-bottom: 8px; }
+    .choice-row { display: flex; flex-direction: column; gap: 8px; }
+    .choice-btn {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 14px; font-weight: 400;
+      color: var(--text);
+      cursor: pointer; text-align: left;
+      transition: all 0.18s;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      line-height: 1.55; width: 100%;
+      box-shadow: var(--shadow-sm);
+    }
+    .choice-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); }
+    .choice-btn .choice-label { font-weight: 800; font-size: 13px; color: var(--accent); min-width: 20px; flex-shrink: 0; }
+    .choice-btn.correct { border-color: var(--accent); background: var(--accent-light); }
+    .choice-btn.wrong { border-color: var(--red); background: var(--red-light); }
+    .choice-btn.correct .choice-label { color: var(--accent); }
+    .choice-btn.wrong .choice-label { color: var(--red); }
+
+    .feedback-box { display: none; margin-top: 0.75rem; border-radius: var(--radius-sm); padding: 0.75rem 1rem; font-size: 13px; line-height: 1.75; }
+    .feedback-box.correct { background: var(--accent-light); border-left: 3px solid var(--accent); }
+    .feedback-box.wrong { background: var(--red-light); border-left: 3px solid var(--red); }
+    .fb-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+    .feedback-box.correct .fb-title { color: var(--accent); }
+    .feedback-box.wrong .fb-title { color: var(--red); }
+    .fb-correct-line { color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+    .fb-vi { color: var(--text-sub); font-style: italic; margin-bottom: 6px; }
+    .fb-explain { color: var(--text-sub); }
+    .fb-wrong-reason { color: var(--red); margin-top: 6px; font-size: 12px; font-weight: 500; }
+
+    /* SCORE */
+    .score-banner {
+      display: none; text-align: center;
+      padding: 2rem;
+      background: var(--accent-light);
+      border: 2px solid var(--accent-border);
+      border-radius: var(--radius);
+      margin-top: 1rem;
+    }
+    .score-num { font-size: 44px; font-weight: 800; color: var(--accent); }
+    .score-msg { font-size: 14px; font-weight: 500; color: var(--text-sub); margin-top: 6px; }
+
+    /* NEXT BTN */
+    .next-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: var(--radius-sm);
+      padding: 11px 24px;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      transition: all 0.2s;
+      margin-top: 1rem;
+      box-shadow: 0 3px 10px rgba(14,165,160,0.25);
+    }
+    .next-btn:hover { background: #0B8F8A; transform: translateY(-1px); box-shadow: 0 5px 14px rgba(14,165,160,0.3); }
+
+    /* DIVIDER */
+    .section-divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+
+    /* FOOTER */
+    .footer { text-align: center; margin-top: 3rem; font-size: 13px; color: var(--text-sub); }
+    .footer span { color: var(--accent); font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="brand">ieltswithkai</div>
+    <div class="lesson-tag">Reading · Bài 1</div>
+    <h1 class="main-title">Tư duy đọc chuẩn<br>theo nhà văn</h1>
+    <p class="main-sub">Câu nào cũng có thể tóm thành 3–8 từ — nếu bạn biết cách nhìn đúng chỗ.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-label">Tiến độ luyện tập</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="switchTab('theory')">Lý thuyết</button>
+    <button class="tab-btn" onclick="switchTab('signals')">4 dấu hiệu</button>
+    <button class="tab-btn" onclick="switchTab('practice')">Luyện tập</button>
+  </div>
+
+  <!-- TAB 1: LÝ THUYẾT -->
+  <div id="tab-theory" class="tab-content active">
+    <div class="card">
+      <div class="problem-box">
+        <div class="problem-label">Vấn đề</div>
+        <p>Nhiều bạn khi đọc IELTS hay dịch từng từ từng chữ — đọc xong thấy mệt, thấy rối, thấy nản vì câu dài quá không hiểu gì. Thật ra không phải do bạn kém, mà là do <strong>chưa có cách đọc đúng</strong>. Mục tiêu của chúng ta là tìm ra cách đọc gọn nhất có thể — hiểu ý chính nhanh, không bị lạc trong đống từ ngữ.</p>
+      </div>
+      <div class="card-label">Core insight</div>
+      <div class="card-title">Nhà văn viết dài — nhưng ý chính chỉ 3–8 từ</div>
+      <p class="card-body">Khi viết, nhà văn cố tình làm câu trông phức tạp, rối mắt. Nhưng thật ra, ý chính của bất kỳ câu nào — dù tiếng Anh hay tiếng Việt — đều có thể tóm lại trong 3–8 từ.</p>
+      <div class="insight-box">
+        <p>Ý chính luôn nằm ở <strong>Subject + Verb + đuôi của động từ</strong> (SVP chính). Tất cả những phần còn lại đều là thông tin phụ — có thể bỏ qua khi đọc lần đầu.</p>
+      </div>
+
+      <div class="section-divider"></div>
+      <p class="card-body"><strong style="color:var(--text);">Đuôi của động từ là gì?</strong></p>
+      <p class="card-body" style="margin-top:0.4rem;">Mỗi động từ trong tiếng Anh có một "đuôi" — tức là những từ <strong>bắt buộc phải đi kèm</strong> để câu có nghĩa hoàn chỉnh. Không có đuôi, câu sẽ bị thiếu ý. Ví dụ:</p>
+      <table class="verb-table">
+        <thead><tr><th>Động từ</th><th>Đuôi (pattern)</th><th>Ví dụ</th></tr></thead>
+        <tbody>
+          <tr><td>allows</td><td>allows somebody to do sth</td><td>The law allows students to apply.</td></tr>
+          <tr><td>makes</td><td>makes somebody do sth</td><td>Stress makes people lose sleep.</td></tr>
+          <tr><td>is famous</td><td>is famous for + Noun</td><td>Vietnam is famous for its food.</td></tr>
+          <tr><td>contributes</td><td>contributes to + Noun</td><td>Exercise contributes to good health.</td></tr>
+        </tbody>
+      </table>
+      <p class="card-body" style="margin-top:0.75rem; font-size:13px;">→ Khi gặp một động từ, hãy hỏi: <em>"Đuôi của nó là gì? Ai/cái gì đi kèm?"</em> — đó chính là phần SVP cần tìm.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Demo</div>
+      <div class="card-title">Nhìn vào thực tế</div>
+      <div class="demo-box">
+        <div class="demo-label">Câu gốc</div>
+        Vietnam, <span class="s-sub">which has the S-shape and is located in Southeast Asia,</span> <span class="s-main">is really famous</span> <span class="s-tail">for its long history</span>.
+        <div class="s-result">→ SVP chính: <span>Vietnam is famous for history</span></div>
+        <div style="font-size:13px;color:var(--text-sub);margin-top:8px;line-height:1.75;">"is famous" là verb — đuôi của nó là <strong style="color:var(--text);">famous for + Noun</strong>. Vậy nên "for its long history" là một phần của SVP, không bỏ qua. Còn phần "which..." là mệnh đề quan hệ, chỉ giải thích thông tin phụ → bỏ qua được.</div>
+      </div>
+    </div>
+    <button class="next-btn" onclick="switchTab('signals')">Tiếp theo: 4 dấu hiệu →</button>
+  </div>
+
+  <!-- TAB 2: 4 DẤU HIỆU -->
+  <div id="tab-signals" class="tab-content">
+    <div class="card">
+      <div class="problem-box">
+        <div class="problem-label">Vấn đề</div>
+        <p>Nhà văn không viết câu dài một cách ngẫu nhiên — họ <strong>cố tình chèn thông tin phụ</strong> vào giữa câu để làm người đọc bị rối, mất phương hướng. Nếu bạn không nhận ra những chỗ bị "chèn" đó, bạn sẽ cứ cố dịch hết mọi thứ và bị lạc. Học 4 dấu hiệu dưới đây để nhận ra ngay đâu là bẫy, đâu là ý chính.</p>
+      </div>
+      <div class="card-label">Bộ công cụ</div>
+      <div class="card-title">4 dấu hiệu nhận diện thông tin phụ</div>
+      <div class="signal-list">
+        <div class="signal-card">
+          <div class="signal-header">
+            <div class="signal-num">01</div>
+            <div class="signal-name">S, [detail], V</div>
+            <div class="signal-hint">Mệnh đề quan hệ giữa 2 dấu phẩy = phụ</div>
+          </div>
+          <div class="sig-examples">
+            <div class="sig-ex">
+              <div class="ex-sent">Vietnam, <span class="s-sub">which has the S-shape,</span> <span class="s-main">is famous</span> <span class="s-tail">for history</span>.</div>
+              <div class="ex-svp">→ Vietnam is famous for history.</div>
+              <div class="ex-note">Mệnh đề "which has..." mô tả thêm Vietnam — không phải ý chính.</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent">The scientist, <span class="s-sub">who won the Nobel Prize in 2015,</span> <span class="s-main">discovered</span> <span class="s-tail">a new vaccine</span>.</div>
+              <div class="ex-svp">→ The scientist discovered a vaccine.</div>
+              <div class="ex-note">"who won the Nobel Prize" chỉ nói thêm về scientist — bỏ qua khi tìm ý chính.</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent">The report, <span class="s-sub">published last year by WHO,</span> <span class="s-main">shows</span> <span class="s-tail">rising obesity rates</span>.</div>
+              <div class="ex-svp">→ The report shows rising obesity rates.</div>
+              <div class="ex-note">"published last year by WHO" là thông tin phụ về nguồn gốc báo cáo.</div>
+            </div>
+          </div>
+        </div>
+        <div class="signal-card">
+          <div class="signal-header">
+            <div class="signal-num">02</div>
+            <div class="signal-name">Preposition + detail</div>
+            <div class="signal-hint">in / on / at / from / of / by... → thường là phụ</div>
+          </div>
+          <div class="sig-examples">
+            <div class="sig-ex">
+              <div class="ex-sent">Dinh Doc Lap, <span class="s-sub">which is in Ho Chi Minh City,</span> <span class="s-main">is famous</span>.</div>
+              <div class="ex-svp">→ Dinh Doc Lap is famous.</div>
+              <div class="ex-note">Người nước ngoài kể lại chỉ nhớ "nổi tiếng" — không nhớ ở đâu.</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent">The meeting <span class="s-sub">on Thursday afternoon at the main office</span> <span class="s-main">was cancelled</span>.</div>
+              <div class="ex-svp">→ The meeting was cancelled.</div>
+              <div class="ex-note">"on Thursday", "at the main office" — thông tin bối cảnh, không phải ý chính.</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent">Water <span class="s-sub">from polluted rivers in rural areas</span> <span class="s-main">causes</span> <span class="s-tail">serious diseases</span>.</div>
+              <div class="ex-svp">→ Water causes diseases.</div>
+              <div class="ex-note">"from polluted rivers in rural areas" — nói rõ nguồn nước nhưng không phải ý chính.</div>
+            </div>
+          </div>
+        </div>
+        <div class="signal-card">
+          <div class="signal-header">
+            <div class="signal-num">03</div>
+            <div class="signal-name">such as / like / including...</div>
+            <div class="signal-hint">Ví dụ minh hoạ = phụ</div>
+          </div>
+          <div class="sig-examples">
+            <div class="sig-ex">
+              <div class="ex-sent">Many animals, <span class="s-sub">such as tigers, elephants and rhinos,</span> <span class="s-main">are endangered</span>.</div>
+              <div class="ex-svp">→ Many animals are endangered.</div>
+              <div class="ex-note">Ví dụ chỉ minh hoạ — ý chính đã nằm ở "many animals are endangered" rồi.</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent">Several factors, <span class="s-sub">including stress, poor diet, and lack of sleep,</span> <span class="s-main">contribute to</span> <span class="s-tail">heart disease</span>.</div>
+              <div class="ex-svp">→ Several factors contribute to heart disease.</div>
+              <div class="ex-note">"including..." liệt kê ví dụ — không cần nhớ hết, chỉ cần hiểu "nhiều nguyên nhân".</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent">Renewable energy sources, <span class="s-sub">like solar and wind power,</span> <span class="s-main">are replacing</span> <span class="s-tail">fossil fuels</span>.</div>
+              <div class="ex-svp">→ Renewable energy is replacing fossil fuels.</div>
+              <div class="ex-note">"like solar and wind power" — ví dụ cụ thể, không phải ý chính.</div>
+            </div>
+          </div>
+        </div>
+        <div class="signal-card">
+          <div class="signal-header">
+            <div class="signal-num">04</div>
+            <div class="signal-name">N1, N2, N3, and N4</div>
+            <div class="signal-hint">Liệt kê = cùng nghĩa → nhớ 1 cái dễ nhất là đủ</div>
+          </div>
+          <div class="sig-examples">
+            <div class="sig-ex">
+              <div class="ex-sent"><span class="s-sub">Antiquarian scripts, first editions, and</span> rare materials <span class="s-main">can be found</span> in the library.</div>
+              <div class="ex-svp">→ Rare materials can be found in the library.</div>
+              <div class="ex-note">Cả 3 đều là "thứ hiếm/khó kiếm" — nhớ "rare materials" là đủ.</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent"><span class="s-sub">Anxiety, depression, and chronic stress</span> <span class="s-main">can weaken</span> <span class="s-tail">the immune system</span>.</div>
+              <div class="ex-svp">→ Mental health issues can weaken immunity.</div>
+              <div class="ex-note">3 thứ liệt kê đều là vấn đề tâm lý — nhớ 1 cái quen nhất.</div>
+            </div>
+            <div class="sig-ex">
+              <div class="ex-sent"><span class="s-sub">Highways, railways, and shipping routes</span> <span class="s-main">connect</span> <span class="s-tail">major trade hubs</span>.</div>
+              <div class="ex-svp">→ Transport networks connect trade hubs.</div>
+              <div class="ex-note">3 loại hình vận tải — đều là "phương tiện kết nối", nhớ khái niệm chung là đủ.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="next-btn" onclick="switchTab('practice')">Luyện tập ngay →</button>
+  </div>
+
+  <!-- TAB 3: LUYỆN TẬP -->
+  <div id="tab-practice" class="tab-content">
+    <div class="card">
+      <div class="problem-box">
+        <div class="problem-label">Tại sao phải luyện tập?</div>
+        <p>Như chú Thái Công hay nói — để thật sự giỏi, ta cần đủ <strong>"Kiến Thức, Kinh Nghiệm và Trải Nghiệm"</strong>. Biết lý thuyết mới chỉ là bước đầu. Đi thi IELTS là cuộc thi về <strong>logic và tư duy</strong>, không phải cuộc thi học thuộc rồi vào trả bài. Hãy luyện thật nhiều để tư duy SVP trở thành phản xạ tự nhiên.</p>
+      </div>
+      <div class="card-label">Luyện tập</div>
+      <div class="card-title">Chọn cách rút gọn đúng ý chính</div>
+      <p class="card-body" style="margin-bottom:1rem;">Đọc câu gốc, chọn A hoặc B — cái nào là SVP chính đúng?</p>
+      <div id="quizArea"></div>
+      <div class="score-banner" id="scoreBanner">
+        <div class="score-num" id="scoreNum"></div>
+        <div class="score-msg" id="scoreMsg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Made with ❤️ by <span>ieltswithkai</span></div>
+</div>
+
+<script>
+const quizData = [
+  { sentence: "The Amazon rainforest, which covers more than 5.5 million square kilometres, produces 20% of the world's oxygen.", choices: [{ label:"A", text:"The Amazon produces oxygen.", correct:true, vi:"Rừng Amazon tạo ra oxy.", correctExplain:"'which covers...' là mệnh đề quan hệ → thông tin phụ, bỏ qua. SVP chính: The Amazon (S) + produces (V) + oxygen (đuôi).", wrongReason:null }, { label:"B", text:"The Amazon covers 5.5 million square kilometres.", correct:false, vi:null, correctExplain:null, wrongReason:"Câu B lấy thông tin từ mệnh đề quan hệ 'which covers 5.5 million...' — đây là thông tin phụ mô tả kích thước, không phải ý chính." }] },
+  { sentence: "Smartphones, tablets, and laptops have completely changed the way people communicate.", choices: [{ label:"A", text:"Smartphones have changed tablets and laptops.", correct:false, vi:null, correctExplain:null, wrongReason:"Câu A hiểu sai cấu trúc liệt kê — 'Smartphones, tablets, and laptops' đều là Subject chung, không phải smartphones thay đổi tablets." }, { label:"B", text:"Devices have changed the way people communicate.", correct:true, vi:"Các thiết bị đã thay đổi cách con người giao tiếp.", correctExplain:"3 thiết bị liệt kê → đều là 'thiết bị điện tử', nhớ 1 đại diện. SVP: Devices (S) + have changed (V) + the way people communicate (đuôi).", wrongReason:null }] },
+  { sentence: "The new policy, introduced by the government in 2022, allows small businesses to apply for tax relief.", choices: [{ label:"A", text:"The policy allows businesses to apply for tax relief.", correct:true, vi:"Chính sách cho phép các doanh nghiệp nộp đơn xin miễn thuế.", correctExplain:"'introduced by the government in 2022' là thông tin phụ kẹp giữa 2 dấu phẩy → bỏ qua. 'allows somebody to V' → somebody = businesses, to V = to apply for tax relief.", wrongReason:null }, { label:"B", text:"The government introduced the policy in 2022.", correct:false, vi:null, correctExplain:null, wrongReason:"Câu B lấy thông tin từ mệnh đề rút gọn 'introduced by the government in 2022' — đây là thông tin phụ. Verb chính là 'allows', không phải 'introduced'." }] },
+  { sentence: "Many endangered species, including the Sumatran tiger, the black rhino, and the mountain gorilla, are protected by international law.", choices: [{ label:"A", text:"The Sumatran tiger, black rhino, and gorilla are endangered.", correct:false, vi:null, correctExplain:null, wrongReason:"Câu A bị bẫy bởi dấu hiệu 03 — 'including the Sumatran tiger...' là ví dụ minh hoạ, thông tin phụ. Verb chính là 'are protected', không phải 'are endangered'." }, { label:"B", text:"Endangered species are protected by law.", correct:true, vi:"Các loài có nguy cơ tuyệt chủng được bảo vệ bởi luật pháp.", correctExplain:"'including...' là ví dụ phụ → bỏ qua. SVP: Endangered species (S) + are protected (V). 'by international law' là đuôi của 'protected'.", wrongReason:null }] },
+  { sentence: "The ancient temple, situated on top of a remote hill in northern Thailand, attracts thousands of tourists every year.", choices: [{ label:"A", text:"The temple attracts tourists.", correct:true, vi:"Ngôi đền thu hút khách du lịch.", correctExplain:"'situated on top of a remote hill in northern Thailand' là thông tin phụ kẹp giữa 2 dấu phẩy → bỏ qua. SVP: The temple (S) + attracts (V) + tourists (đuôi).", wrongReason:null }, { label:"B", text:"The temple is situated on a remote hill in Thailand.", correct:false, vi:null, correctExplain:null, wrongReason:"Câu B lấy thông tin từ mệnh đề rút gọn 'situated on top of...' — đây là thông tin phụ về vị trí. Verb chính là 'attracts', không phải 'situated'." }] }
+];
+
+let answered = 0;
+
+function buildQuiz() {
+  const area = document.getElementById('quizArea');
+  quizData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-item';
+    div.innerHTML = `
+      <div class="quiz-num">Câu ${String(i+1).padStart(2,'0')}</div>
+      <div class="quiz-sentence">"${q.sentence}"</div>
+      <div class="quiz-label">Cách rút gọn nào đúng ý chính?</div>
+      <div class="choice-row">
+        ${q.choices.map((c,ci) => `<button class="choice-btn" onclick="selectChoice(this,${i},${ci})"><span class="choice-label">${c.label}</span><span>${c.text}</span></button>`).join('')}
+      </div>
+      <div class="feedback-box" id="fb-${i}">
+        <div class="fb-title" id="fb-title-${i}"></div>
+        <div class="fb-correct-line" id="fb-correct-${i}" style="display:none;"></div>
+        <div class="fb-vi" id="fb-vi-${i}" style="display:none;"></div>
+        <div class="fb-explain" id="fb-explain-${i}"></div>
+        <div class="fb-wrong-reason" id="fb-wrong-${i}" style="display:none;"></div>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function selectChoice(btn, qIdx, cIdx) {
+  const item = btn.closest('.quiz-item');
+  const btns = item.querySelectorAll('.choice-btn');
+  if (btns[0].disabled) return;
+  btns.forEach(b => b.disabled = true);
+  const q = quizData[qIdx];
+  const chosen = q.choices[cIdx];
+  const correctChoice = q.choices.find(c => c.correct);
+  const wrongChoice = q.choices.find(c => !c.correct);
+  chosen.correct ? btn.classList.add('correct') : (btn.classList.add('wrong'), btns.forEach((b,bi) => { if (q.choices[bi].correct) b.classList.add('correct'); }));
+  const fb = document.getElementById(`fb-${qIdx}`);
+  fb.className = `feedback-box ${chosen.correct ? 'correct' : 'wrong'}`;
+  document.getElementById(`fb-title-${qIdx}`).textContent = chosen.correct ? '✓ Chính xác!' : '✗ Chưa đúng';
+  if (!chosen.correct) { document.getElementById(`fb-correct-${qIdx}`).textContent = `Đáp án đúng: "${correctChoice.text}"`; document.getElementById(`fb-correct-${qIdx}`).style.display = 'block'; }
+  document.getElementById(`fb-vi-${qIdx}`).textContent = `Nghĩa: "${correctChoice.vi}"`; document.getElementById(`fb-vi-${qIdx}`).style.display = 'block';
+  document.getElementById(`fb-explain-${qIdx}`).textContent = correctChoice.correctExplain;
+  if (!chosen.correct) { document.getElementById(`fb-wrong-${qIdx}`).textContent = `⚠ Tại sao ${chosen.label} sai: ${wrongChoice.wrongReason}`; document.getElementById(`fb-wrong-${qIdx}`).style.display = 'block'; }
+  fb.style.display = 'block';
+  answered++; updateProgress();
+  if (answered === quizData.length) setTimeout(showScore, 400);
+}
+
+function showScore() {
+  let correct = 0;
+  document.querySelectorAll('.quiz-item').forEach((item,i) => { item.querySelectorAll('.choice-btn').forEach((b,bi) => { if (b.classList.contains('correct') && !b.classList.contains('wrong') && quizData[i].choices[bi].correct) correct++; }); });
+  const msgs = ['Cố lên nha! Đọc lại lý thuyết rồi thử lại nhé. 💪','Khá rồi! Ôn thêm phần 4 dấu hiệu để chắc hơn. 📖','Tốt lắm! Luyện thêm là thành thục thôi. 🎯','Xuất sắc! Tư duy SVP đang thành phản xạ rồi đó. 🔥','Hoàn hảo! Bạn đã nắm vững bài này rồi! 🏆'];
+  document.getElementById('scoreNum').textContent = `${correct} / ${quizData.length}`;
+  document.getElementById('scoreMsg').textContent = msgs[Math.min(Math.round((correct/quizData.length)*4), 4)];
+  document.getElementById('scoreBanner').style.display = 'block';
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => { if (b.getAttribute('onclick').includes(name)) b.classList.add('active'); });
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = Math.round((answered/quizData.length)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
